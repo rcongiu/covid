@@ -11,7 +11,7 @@ library(shiny)
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
-  
+  tags$head(includeHTML(("google-analytics.html"))),
 
   
   # Sidebar with a slider input for number of bins 
