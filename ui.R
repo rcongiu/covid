@@ -12,12 +12,13 @@ library(shiny)
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
   
-  # Application title
-  titlePanel("Old Faithful Geyser Data"),
+
   
   # Sidebar with a slider input for number of bins 
   sidebarLayout(
     sidebarPanel(
+      # Application title
+      titlePanel("COVID-19 in Italia"),
       h4("Seleziona regione, o tutta Italia")
       ),
     
