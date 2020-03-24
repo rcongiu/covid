@@ -44,8 +44,8 @@ shinyServer(function(input, output) {
     grid(NULL, NULL, col = "lightgray", lty = "dotted",
          lwd = par("lwd"), equilogs = TRUE)
     
-    plot(der2$dt,der2$misura,  col=ifelse(der2$misura<0, "red", "green"), cex=3, main="Accelerazione",
-         xlab="Verde: decelerazione, Rosso: Accelerazione",
+    plot(der2$dt,der2$misura,  col=ifelse(der2$misura<0, "green", "red"), cex=3, main="Accelerazione",
+         xlab="Verde: Decelerazione\nRosso: Accelerazione",
          ylab=paste(misura, "/giorni^2"))
     
     
