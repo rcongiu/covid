@@ -20,16 +20,12 @@ shinyUI(fluidPage(
       # Application title
       titlePanel("COVID-19 in Italia"),
       h4("Seleziona regione, o tutta Italia"),
-      div("Le linee tratteggiate rappresentano una moving average calcolata con decadimento esponenziale")
-      ),
-    
-    # Show a plot of the generated distribution
-    mainPanel(
+      div("Le linee tratteggiate rappresentano una moving average calcolata con decadimento esponenziale"),
       selectInput("regione", label="Regione", choices = list("ITALIA",
-        "Abruzzo", "Basilicata","P.A. Bolzano", "Calabria", "Campania", "Emilia Romagna", 
-        "Friuli Venezia Giulia", "Lazio", "Liguria", "Lombardia",   "Marche",  "Molise",  
-        "Piemonte",   "Puglia", "Sardegna", "Sicilia",  "Toscana", "P.A. Trento",
-        "Umbria", "Valle d'Aosta",  "Veneto"), selected = "ITALIA"),
+                                                             "Abruzzo", "Basilicata","P.A. Bolzano", "Calabria", "Campania", "Emilia Romagna", 
+                                                             "Friuli Venezia Giulia", "Lazio", "Liguria", "Lombardia",   "Marche",  "Molise",  
+                                                             "Piemonte",   "Puglia", "Sardegna", "Sicilia",  "Toscana", "P.A. Trento",
+                                                             "Umbria", "Valle d'Aosta",  "Veneto"), selected = "ITALIA"),
       selectInput("misura",label="Misura", selected="totale_casi", choices= list(
         "ricoverati_con_sintomi",
         "terapia_intensiva",
@@ -38,7 +34,11 @@ shinyUI(fluidPage(
         "totale_attualmente_positivi",
         "nuovi_attualmente_positivi","dimessi_guariti",
         "deceduti","totale_casi","tamponi"
-      )),
+      ))
+      ),
+    
+    # Show a plot of the generated distribution
+    mainPanel(
        plotOutput("linePlot"),
       hr(),
       a("Dati da https://github.com/pcm-dpc/COVID-19", href="https://github.com/pcm-dpc/COVID-19")

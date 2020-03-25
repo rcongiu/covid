@@ -40,7 +40,7 @@ shinyServer(function(input, output) {
     
     der2 <- myder(der1)
     ma2 <- TTR::EMA(der2$misura, n=7,  ratio=2/(5+1))
-    layout(matrix(1:4, 2, 2))
+    layout(matrix(1:3, 1,3))
     
     plot(projd$dt,projd$misura, type="l", col="purple", lwd=5, main=paste(misura, region, sep=" - "), ylab=misura, 
          xlab="Date", axes=TRUE)
@@ -48,17 +48,19 @@ shinyServer(function(input, output) {
     grid(NULL, NULL, col = "lightgray", lty = "dotted",
          lwd = par("lwd"), equilogs = TRUE)
     
+    
+    
+    plot(der1$dt, der1$misura,pch=12, col="red",type="l", cex=2, main="Velocità", 
+         ylab=paste(misura, " - differenza giorno precedente"))
+    lines(der1$dt, ma1, col="black", lty=2)
+    
     plot(der2$dt,der2$misura,  col=ifelse(der2$misura<0, "green", "red"), cex=3, main="Accelerazione",
          xlab="Verde: Decelerazione\nRosso: Accelerazione",
          ylab=paste(misura, "/giorni^2"))
     lines(der2$dt, ma2, col="black", lty=2)
     abline(h=0, col="gray")
     
-    
-    
-    plot(der1$dt, der1$misura,pch=12, col="red",type="l", cex=2, main="Velocità", 
-         ylab=paste(misura, " - differenza giorno precedente"))
-    lines(der1$dt, ma1, col="black", lty=2)
+
     
   })
   
