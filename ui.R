@@ -19,7 +19,8 @@ shinyUI(fluidPage(
     sidebarPanel(
       # Application title
       titlePanel("COVID-19 in Italia"),
-      h4("Seleziona regione, o tutta Italia")
+      h4("Seleziona regione, o tutta Italia"),
+      div("Le linee tratteggiate rappresentano una moving average calcolata con decadimento esponenziale")
       ),
     
     # Show a plot of the generated distribution
