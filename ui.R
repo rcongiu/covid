@@ -33,7 +33,8 @@ shinyUI(fluidPage(
         "isolamento_domiciliare",
         "totale_attualmente_positivi",
         "nuovi_attualmente_positivi","dimessi_guariti",
-        "deceduti","totale_casi","tamponi"
+        "deceduti","totale_casi","tamponi",
+        "totale_casi_su_tamponi"
       ))
       ),
     

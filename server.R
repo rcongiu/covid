@@ -17,12 +17,14 @@ shinyServer(function(input, output) {
   output$linePlot <- renderPlot({
     data <- read.csv("data.csv", header=TRUE,sep="," )
     data$dt <- as.Date(data$data)
+    data$totale_casi_su_tamponi <- data$totale_casi /data$tamponi
     
     region <- input$regione
     misura <- input$misura
     
     if(region == "ITALIA") {
       regData <-  aggregate(. ~ dt, data, sum)
+      regData$totale_casi_su_tamponi <-  regData$totale_casi / regData$tamponi 
     } else {
       regData <- data[data$denominazione_regione == region,]
     }
