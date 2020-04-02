@@ -22,7 +22,7 @@ shinyUI(fluidPage(
       h4("Seleziona regione, o tutta Italia"),
       div("Le linee tratteggiate rappresentano una moving average calcolata con decadimento esponenziale"),
       selectInput("regione", label="Regione", choices = list("ITALIA",
-                                                             "Abruzzo", "Basilicata","P.A. Bolzano", "Calabria", "Campania", "Emilia Romagna", 
+                                                             "Abruzzo", "Basilicata","P.A. Bolzano", "Calabria", "Campania", "Emilia-Romagna", 
                                                              "Friuli Venezia Giulia", "Lazio", "Liguria", "Lombardia",   "Marche",  "Molise",  
                                                              "Piemonte",   "Puglia", "Sardegna", "Sicilia",  "Toscana", "P.A. Trento",
                                                              "Umbria", "Valle d'Aosta",  "Veneto"), selected = "ITALIA"),
@@ -31,9 +31,11 @@ shinyUI(fluidPage(
         "terapia_intensiva",
         "totale_ospedalizzati",
         "isolamento_domiciliare",
-        "totale_attualmente_positivi",
-        "nuovi_attualmente_positivi","dimessi_guariti",
-        "deceduti","totale_casi","tamponi",
+        "totale_positivi",
+        "nuovi_positivi",
+        "dimessi_guariti",
+        "deceduti",
+        "totale_casi","tamponi",
         "totale_casi_su_tamponi"
       ))
       ),
