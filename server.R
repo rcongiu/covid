@@ -14,10 +14,18 @@ library(TTR)
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
    
+  data <- read.csv("data.csv", header=TRUE,sep="," )
+  data$dt <- as.Date(data$data)
+  data$totale_casi_su_tamponi <- data$totale_casi /data$tamponi
+  
+  shift <- function(x, n){
+    c(x[-(seq(n))], rep(NA, n))
+  }
+  
+#  trailingDays <- 28
+ # data$mortailita_su_21_giorni <- data$deceduti /  shift(data$totale_casi,trailingDays)
+  
   output$linePlot <- renderPlot({
-    data <- read.csv("data.csv", header=TRUE,sep="," )
-    data$dt <- as.Date(data$data)
-    data$totale_casi_su_tamponi <- data$totale_casi /data$tamponi
     
     region <- input$regione
     misura <- input$misura
@@ -67,8 +75,7 @@ shinyServer(function(input, output) {
     lines(der2$dt, ma2, col="black", lty=2)
     abline(h=0, col="gray")
     
-
-    
   })
+  
   
 })
