@@ -45,11 +45,13 @@ shinyServer(function(input, output) {
     }
     
     der1 <- myder(projd)
-    ma1 <- TTR::EMA(der1$misura, n=7,  ratio=2/(5+1))
+    # ma1 <- TTR::EMA(der1$misura, n=7,  ratio=2/(5+1))
+    ma1 <- TTR::SMA(der1$misura, n=7)
 
     
     der2 <- myder(der1)
-    ma2 <- TTR::EMA(der2$misura, n=7,  ratio=2/(5+1))
+    # ma2 <- TTR::EMA(der2$misura, n=7,  ratio=2/(5+1))
+    ma2 <- TTR::SMA(der2$misura, n=7)
     layout(matrix(1:4, 2,2))
     
     plot(projd$dt,projd$misura, type="l", col="purple", lwd=5, main=paste(misura, region, sep=" - "), ylab=misura, 
