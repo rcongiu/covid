@@ -67,11 +67,11 @@ shinyServer(function(input, output) {
     grid(NULL, NULL, col = "lightgray", lty = "dotted",
          lwd = par("lwd"), equilogs = TRUE)
     
-    plot(der1$dt, der1$misura,pch=12, col="red",type="l", cex=2, main="Velocità", 
+    plot(der1$dt, der1$misura,pch=12, col="red",type="l", cex=2, main="Velocità",  
          ylab=paste(misura, " - differenza giorno precedente"))
-    lines(der1$dt, ma1, col="black", lty=2)
+    lines(der1$dt, ma1, col="black", lty=2, xaxs="i")
     
-    plot(der2$dt,der2$misura,  col=ifelse(der2$misura<0, "green", "red"), cex=3, main="Accelerazione",
+    plot(der2$dt,der2$misura,  col=ifelse(der2$misura<0, "green", "red"), cex=3, main="Accelerazione", xaxs="i",
          xlab="Verde: Decelerazione\nRosso: Accelerazione",
          ylab=paste(misura, "/giorni^2"))
     lines(der2$dt, ma2, col="black", lty=2)
