@@ -48,6 +48,7 @@ shinyServer(function(input, output) {
     # ma1 <- TTR::EMA(der1$misura, n=7,  ratio=2/(5+1))
     ma1 <- TTR::SMA(der1$misura, n=7)
 
+   # dev.new(width = 550, height = 330, unit = "px")
     
     der2 <- myder(der1)
     # ma2 <- TTR::EMA(der2$misura, n=7,  ratio=2/(5+1))
@@ -69,7 +70,8 @@ shinyServer(function(input, output) {
     
     plot(der1$dt, der1$misura,pch=12, col="red",type="l", cex=2, main="Velocità",  
          ylab=paste(misura, " - differenza giorno precedente"))
-    lines(der1$dt, ma1, col="black", lty=2, xaxs="i")
+    lines(der1$dt, ma1, col="black", lty=2)
+    abline(h=0,col="gray")
     
     plot(der2$dt,der2$misura,  col=ifelse(der2$misura<0, "green", "red"), cex=3, main="Accelerazione", xaxs="i",
          xlab="Verde: Decelerazione\nRosso: Accelerazione",
@@ -77,7 +79,8 @@ shinyServer(function(input, output) {
     lines(der2$dt, ma2, col="black", lty=2)
     abline(h=0, col="gray")
     
-  })
+    
+  },  height = 1000, width = 1000)
   
   
 })
