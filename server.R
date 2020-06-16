@@ -60,6 +60,8 @@ shinyServer(function(input, output) {
     
     grid(NULL, NULL, col = "lightgray", lty = "dotted",
          lwd = par("lwd"), equilogs = TRUE)
+    abline(v=as.Date("03/03/2020","%d/%m/%Y"))  
+    
     
     
     plot(projd$dt,projd$misura, type="l", col="purple", lwd=5, main=paste(misura, region, "Logaritmico", sep=" - "), ylab=misura, 
@@ -67,18 +69,22 @@ shinyServer(function(input, output) {
     
     grid(NULL, NULL, col = "lightgray", lty = "dotted",
          lwd = par("lwd"), equilogs = TRUE)
+    abline(v=as.Date("03/03/2020","%d/%m/%Y"))  
+    
     
     plot(der1$dt, der1$misura,pch=12, col="red",type="l", cex=2, main="Velocità",  
          ylab=paste(misura, " - differenza giorno precedente"))
     lines(der1$dt, ma1, col="black", lty=2)
     abline(h=0,col="gray")
+    abline(v=as.Date("03/03/2020","%d/%m/%Y"))  
+    
     
     plot(der2$dt,der2$misura,  col=ifelse(der2$misura<0, "green", "red"), cex=3, main="Accelerazione", xaxs="i",
          xlab="Verde: Decelerazione\nRosso: Accelerazione",
          ylab=paste(misura, "/giorni^2"))
     lines(der2$dt, ma2, col="black", lty=2)
     abline(h=0, col="gray")
-    
+    abline(v=as.Date("03/03/2020","%d/%m/%Y"))  
     
   },  height = 1000, width = 1000)
   
