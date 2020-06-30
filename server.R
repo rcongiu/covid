@@ -76,7 +76,7 @@ shinyServer(function(input, output) {
          ylab=paste(misura, " - differenza giorno precedente"))
     lines(der1$dt, ma1, col="black", lty=2)
     abline(h=0,col="gray")
-    abline(v=as.Date("03/03/2020","%d/%m/%Y"))  
+    abline(v=as.Date("03/03\ fg/2020","%d/%m/%Y"))  
     
     
     plot(der2$dt,der2$misura,  col=ifelse(der2$misura<0, "green", "red"), cex=3, main="Accelerazione", xaxs="i",
@@ -89,3 +89,4 @@ shinyServer(function(input, output) {
   },  height = 1000, width = 1000)
   
 })
+v++665
