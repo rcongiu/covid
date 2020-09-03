@@ -31,7 +31,7 @@ shinyServer(function(input, output) {
     misura <- input$misura
     
     if(region == "ITALIA") {
-      regData <-  aggregate(. ~ dt, data, sum)
+      regData <-  aggregate(. ~ dt, data, sum, na.action = na.pass)
       regData$totale_casi_su_tamponi <-  regData$totale_casi / regData$tamponi 
     } else {
       regData <- data[data$denominazione_regione == region,]
