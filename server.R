@@ -17,6 +17,7 @@ shinyServer(function(input, output) {
   data <- read.csv("data.csv", header=TRUE,sep="," )
   data$dt <- as.Date(data$data)
   data$totale_casi_su_tamponi <- data$totale_casi /data$tamponi
+  data$ic_su_ospedalizzati <- ifelse(data$totale_ospedalizzati >0,data$terapia_intensiva / data$totale_ospedalizzati, 0)
   
   shift <- function(x, n){
     c(x[-(seq(n))], rep(NA, n))
@@ -33,6 +34,8 @@ shinyServer(function(input, output) {
     if(region == "ITALIA") {
       regData <-  aggregate(. ~ dt, data, sum, na.action = na.pass)
       regData$totale_casi_su_tamponi <-  regData$totale_casi / regData$tamponi 
+      regData$ic_su_ospedalizzati <- ifelse(regData$totale_ospedalizzati >0,regData$terapia_intensiva / regData$totale_ospedalizzati, 0)
+      
     } else {
       regData <- data[data$denominazione_regione == region,]
     }

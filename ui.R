@@ -36,7 +36,8 @@ shinyUI(fluidPage(
         "dimessi_guariti",
         "deceduti",
         "totale_casi","tamponi",
-        "totale_casi_su_tamponi"
+        "totale_casi_su_tamponi",
+        "ic_su_ospedalizzati"
         #,"mortailita_su_21_giorni"
       ))
       ),
