@@ -81,11 +81,12 @@ shinyServer(function(input, output) {
     abline(h=0,col="gray")
     abline(v=as.Date("03/03\ fg/2020","%d/%m/%Y"))  
     
-    
-    plot(der2$dt,der2$misura,  col=ifelse(der2$misura<0, "green", "red"), cex=3, main="Accelerazione", xaxs="i",
-         xlab="Verde: Decelerazione\nRosso: Accelerazione",
+    # der2$dt,der2$misura,  col=ifelse(der2$misura<0, "green", "red")
+    plot(der2$dt, ma2,  col="black", cex=3, main="Accelerazione, media su 7 giorni", xaxs="i",
+         type="l",
+         xlab="Data",
          ylab=paste(misura, "/giorni^2"))
-    lines(der2$dt, ma2, col="black", lty=2)
+    #lines(der2$dt, ma2, col="black", lty=2)
     abline(h=0, col="gray")
     abline(v=as.Date("03/03/2020","%d/%m/%Y"))  
     
