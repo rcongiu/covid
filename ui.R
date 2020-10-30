@@ -39,7 +39,10 @@ shinyUI(fluidPage(
         "totale_casi_su_tamponi",
         "ic_su_ospedalizzati"
         #,"mortailita_su_21_giorni"
-      ))
+      )),
+      hr(),
+      h4("Sommario"),     
+      plotOutput("summaryPlot")
       ),
     
     # Show a plot of the generated distribution

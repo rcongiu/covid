@@ -25,6 +25,30 @@ shinyServer(function(input, output) {
   
 #  trailingDays <- 28
  # data$mortailita_su_21_giorni <- data$deceduti /  shift(data$totale_casi,trailingDays)
+  output$summaryPlot <- renderPlot({
+    region <- input$regione
+    misura <- "totale_positivi"
+    
+    if(region == "ITALIA") {
+      regData <-  aggregate(. ~ dt, data, sum, na.action = na.pass)
+    } else {
+      regData <- data[data$denominazione_regione == region,]
+    }
+    
+    projd <- regData[, c("dt","totale_positivi","totale_ospedalizzati", "terapia_intensiva")]
+    
+    
+    plot(projd$dt,projd$totale_positivi, type="l", col="purple", lwd=4, main=paste( "Positivi/ospedalizzati/t.intensiva", region, "Logaritmico", sep=" - "), ylab="casi/osp./t.intensiva", 
+         xlab="Date", axes=TRUE, log="y")
+    lines(projd$dt, projd$totale_ospedalizzati, col="black", lwd=4)
+    lines(projd$dt, projd$terapia_intensiva, col="red", lwd=3)
+    abline(h=0,col="gray")
+    
+    
+    
+    
+    
+  })
   
   output$linePlot <- renderPlot({
     
@@ -58,6 +82,7 @@ shinyServer(function(input, output) {
     ma2 <- TTR::SMA(der2$misura, n=7)
     layout(matrix(1:4, 2,2))
     
+    # metrica richiesta, alto a sinistra
     plot(projd$dt,projd$misura, type="l", col="purple", lwd=5, main=paste(misura, region, sep=" - "), ylab=misura, 
          xlab="Date", axes=TRUE)
     
@@ -66,7 +91,7 @@ shinyServer(function(input, output) {
     abline(v=as.Date("03/03/2020","%d/%m/%Y"))  
     
     
-    
+    # (2)  metrics richiesta, logartmica, basso a sinistra
     plot(projd$dt,projd$misura, type="l", col="purple", lwd=5, main=paste(misura, region, "Logaritmico", sep=" - "), ylab=misura, 
          xlab="Date", axes=TRUE, log="y")
     
@@ -74,13 +99,14 @@ shinyServer(function(input, output) {
          lwd = par("lwd"), equilogs = TRUE)
     abline(v=as.Date("03/03/2020","%d/%m/%Y"))  
     
-    
+    # (3) derivata prima, alto a destra
     plot(der1$dt, der1$misura,pch=12, col="red",type="l", cex=2, main="Velocità",  
          ylab=paste(misura, " - differenza giorno precedente"))
     lines(der1$dt, ma1, col="black", lty=2)
     abline(h=0,col="gray")
     abline(v=as.Date("03/03\ fg/2020","%d/%m/%Y"))  
     
+    # (4) derivata seconda, basso a destra
     # der2$dt,der2$misura,  col=ifelse(der2$misura<0, "green", "red")
     plot(der2$dt, ma2,  col="black", cex=3, main="Accelerazione, media su 7 giorni", xaxs="i",
          type="l",
