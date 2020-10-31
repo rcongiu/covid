@@ -80,6 +80,9 @@ shinyServer(function(input, output) {
     der2 <- myder(der1)
     # ma2 <- TTR::EMA(der2$misura, n=7,  ratio=2/(5+1))
     ma2 <- TTR::SMA(der2$misura, n=7)
+
+    maa2 <- TTR::SMA(ma1, n=7)
+    
     layout(matrix(1:4, 2,2))
     
     # metrica richiesta, alto a sinistra
@@ -112,7 +115,7 @@ shinyServer(function(input, output) {
          type="l",
          xlab="Data",
          ylab=paste(misura, "/giorni^2"))
-    #lines(der2$dt, ma2, col="black", lty=2)
+    #lines(der2$dt, maa2, col="black", lty=2)
     abline(h=0, col="gray")
     abline(v=as.Date("03/03/2020","%d/%m/%Y"))  
     
