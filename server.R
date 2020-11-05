@@ -13,7 +13,7 @@ library(TTR)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-   
+  
   data <- read.csv("data.csv", header=TRUE,sep="," )
   data$dt <- as.Date(data$data)
   data$totale_casi_su_tamponi <- data$totale_casi /data$tamponi
