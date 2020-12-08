@@ -23,8 +23,7 @@ shinyServer(function(input, output) {
     c(x[-(seq(n))], rep(NA, n))
   }
   
-#  trailingDays <- 28
- # data$mortailita_su_21_giorni <- data$deceduti /  shift(data$totale_casi,trailingDays)
+  
   output$summaryPlot <- renderPlot({
     region <- input$regione
     misura <- "totale_positivi"
@@ -35,13 +34,14 @@ shinyServer(function(input, output) {
       regData <- data[data$denominazione_regione == region,]
     }
     
-    projd <- regData[, c("dt","totale_positivi","totale_ospedalizzati", "terapia_intensiva")]
+    projd <- regData[, c("dt","totale_positivi","totale_ospedalizzati", "terapia_intensiva", "deceduti")]
     
     
-    plot(projd$dt,projd$totale_positivi, type="l", col="purple", lwd=4, main=paste( "Positivi/ospedalizzati/t.intensiva", region, "Logaritmico", sep=" - "), ylab="casi/osp./t.intensiva", 
+    plot(projd$dt,projd$totale_positivi, type="l", col="purple", lwd=4, main=paste( "Positivi/ospedalizzati/t.intensiva/decessi", region, "Logaritmico", sep=" - "), ylab="casi/osp./t.intensiva", 
          xlab="Date", axes=TRUE, log="y")
-    lines(projd$dt, projd$totale_ospedalizzati, col="black", lwd=4)
-    lines(projd$dt, projd$terapia_intensiva, col="red", lwd=3)
+    lines(projd$dt, projd$totale_ospedalizzati, col="yellow", lwd=4)
+    lines(projd$dt, projd$terapia_intensiva, col="orange", lwd=3)
+    lines(projd$deceduti, col="red", lwd=3)
     abline(h=0,col="gray")
     
     
